@@ -1,0 +1,17 @@
+{
+  "name": "llama4-app-gpu",
+  "version": "0.1",
+  "platform": "docker",
+  "platform_config": {
+    "container": "chandrabytenite/llama4-scout-gpu:v0.2"
+  },
+  "entrypoint": "main.py",
+  "device_requirements": {
+    "min_cpu": 2,
+    "min_memory": 2,
+    "gpu": [
+      "NVIDIA A100-SXM4-40GB"
+    ]
+  },
+  "description": "An app named llama4-app-gpu"
+}
