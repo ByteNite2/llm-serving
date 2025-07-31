@@ -52,6 +52,7 @@ if __name__ == '__main__':
     logger.info("Starting LLaMA 4 CPU app...")
     from llama_cpp import Llama
 
+    # Todo:move /llm-models folder to taskrunner environment variables
     model_path = "/llm-models/Llama-4-Scout-Q4_K_M-00001-of-00002.gguf"
     n_ctx = app_params.get('n_ctx', 2048)
     n_threads = app_params.get('n_threads', 8)

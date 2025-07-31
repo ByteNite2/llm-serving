@@ -23,13 +23,13 @@ This repository provides CPU and GPU applications for serving Llama 4 models usi
 
 ### CPU App (`llama4-app-cpu`)
 - **Minimum CPU cores:** 30
-- **Minimum Memory (GB):** 64
+- **Minimum Memory (GB):** 60
 
 Example device requirements in manifest:
 ```json
 "device_requirements": {
   "min_cpu": 30,
-  "min_memory": 64
+  "min_memory": 60
 }
 ```
 
@@ -40,9 +40,9 @@ Example device requirements in manifest:
 Example device requirements in manifest:
 ```json
 "device_requirements": {
-    ...
+  ...
   "gpu": [
-    "NVIDIA A100-SXM4-40GB"
+    "nvidia a100-sxm4-40gb"
   ]
 }
 ```
