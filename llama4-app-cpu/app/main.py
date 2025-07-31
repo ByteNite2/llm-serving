@@ -66,11 +66,11 @@ if __name__ == '__main__':
         n_ctx=n_ctx,
         n_threads=n_threads
     )
-
     prompt = app_params.get('prompt', 'Hello, LLaMA 4!')
-    logger.info(f"Prompt: {prompt}")
+    max_tokens = app_params.get('max_tokens', 2048)
+    logger.info(f"Prompt: {prompt} \nMax Tokens: {max_tokens}")
 
-    output = llm(prompt, max_tokens=2048)
+    output = llm(prompt, max_tokens=max_tokens)
 
     for i, choice in enumerate(output['choices']):
         logger.info(f"Output {i + 1}: {choice['text'].strip()}")

@@ -54,22 +54,23 @@ if __name__ == '__main__':
     model_path = "/models/Llama-4-Scout-Q4_K_M-00001-of-00002.gguf"
     n_ctx = app_params.get('n_ctx', 2048)
     n_threads = app_params.get('n_threads', 8)
-    gpu_layers = app_params.get('gpu_layers', 0)
+    n_gpu_layers = app_params.get('gpu_layers', 0)
 
     logger.info(f"Using model: {model_path}")
-    logger.info(f"Context size: {n_ctx}, Threads: {n_threads}, GPU layers: {gpu_layers}")
+    logger.info(f"Context size: {n_ctx}, Threads: {n_threads}, GPU layers: {n_gpu_layers}")
 
     llm = Llama(
         model_path=model_path,
         n_ctx=n_ctx,
         n_threads=n_threads,
-        gpu_layers=gpu_layers
+        n_gpu_layers=n_gpu_layers
     )
 
     prompt = app_params.get('prompt', 'Hello, LLaMA 4!')
-    logger.info(f"Prompt: {prompt}")
+    max_tokens = app_params.get('max_tokens', 2048)
+    logger.info(f"Prompt: {prompt} \nMax Tokens: {max_tokens}")
 
-    output = llm(prompt, max_tokens=2048)
+    output = llm(prompt, max_tokens=max_tokens)
 
     for i, choice in enumerate(output['choices']):
         logger.info(f"Output {i + 1}: {choice['text'].strip()}")
