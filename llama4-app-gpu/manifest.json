@@ -10,7 +10,7 @@
     "min_cpu": 2,
     "min_memory": 2,
     "gpu": [
-      "NVIDIA A100-SXM4-40GB"
+      "nvidia a100-sxm4-40gb"
     ]
   },
   "description": "An app named llama4-app-gpu"

@@ -70,7 +70,7 @@ if __name__ == '__main__':
     prompt = app_params.get('prompt', 'Hello, LLaMA 4!')
     logger.info(f"Prompt: {prompt}")
 
-    output = llm(prompt, max_tokens=256, stop=["###"])
+    output = llm(prompt, max_tokens=2048)
 
     for i, choice in enumerate(output['choices']):
         logger.info(f"Output {i + 1}: {choice['text'].strip()}")
