@@ -8,7 +8,7 @@
   "entrypoint": "main.py",
   "device_requirements": {
     "min_cpu": 30,
-    "min_memory": 64
+    "min_memory": 60
   },
   "description": "An app named llama4-app-cpu"
 }
