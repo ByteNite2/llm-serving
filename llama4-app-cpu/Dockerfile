@@ -9,9 +9,5 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Install Python dependencies
-RUN pip install --no-cache-dir llama-cpp-python==0.2.72 requests beautifulsoup4
-
-RUN pip uninstall -y llama-cpp-python
-
-RUN pip install --no-cache-dir llama-cpp-python==0.3.14
+RUN pip install --no-cache-dir requests beautifulsoup4 llama-cpp-python==0.3.14
 

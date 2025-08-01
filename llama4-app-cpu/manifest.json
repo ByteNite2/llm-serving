@@ -3,7 +3,7 @@
   "version": "0.1",
   "platform": "docker",
   "platform_config": {
-    "container": "chandrabytenite/llama4-scout-cpu:v0.10"
+    "container": "chandrabytenite/llama4-scout-cpu:v0.11"
   },
   "entrypoint": "main.py",
   "device_requirements": {

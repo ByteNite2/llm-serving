@@ -51,7 +51,7 @@ if __name__ == '__main__':
     logger.info("Starting LLaMA 4 GPU app...")
     from llama_cpp import Llama
 
-    model_path = "/models/Llama-4-Scout-Q4_K_M-00001-of-00002.gguf"
+    model_path = "/llm-models/Llama-4-Scout-Q4_K_M-00001-of-00002.gguf"
     n_ctx = app_params.get('n_ctx', 2048)
     n_threads = app_params.get('n_threads', 8)
     n_gpu_layers = app_params.get('gpu_layers', 0)
