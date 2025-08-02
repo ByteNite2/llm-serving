@@ -3,12 +3,12 @@
   "version": "0.1",
   "platform": "docker",
   "platform_config": {
-    "container": "chandrabytenite/llama4-scout-cpu:v0.1"
+    "container": "chandrabytenite/llama4-scout-cpu:v0.11"
   },
   "entrypoint": "main.py",
   "device_requirements": {
     "min_cpu": 30,
-    "min_memory": 64
+    "min_memory": 60
   },
   "description": "An app named llama4-app-cpu"
 }
