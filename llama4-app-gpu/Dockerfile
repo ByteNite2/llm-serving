@@ -1,24 +1,20 @@
-FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
+FROM nvcr.io/nvidia/pytorch:24.05-py3
 
-# Install system dependencies
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
-    python3.11 \
-    python3-pip \
-    curl \
-    git \
-    build-essential \
-    cmake \
-    libopenblas-dev \
-    wget \
+    git cmake ninja-build build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
-WORKDIR /app
+RUN pip install --upgrade pip
 
-# Upgrade pip and install Python dependencies with CUDA support
-RUN python3.11 -m pip install --upgrade pip && \
-    pip install --no-cache-dir llama-cpp-python[cuda]==0.3.14 requests beautifulsoup4
+# Clone and build llama-cpp-python with CUDA
+RUN git clone --recursive https://github.com/abetlen/llama-cpp-python.git /llama-cpp-python
 
+WORKDIR /llama-cpp-python
 
-# Add symlink for python
-RUN ln -s /usr/bin/python3.11 /usr/bin/python
+# Set CUDA build flags correctly
+ENV CMAKE_ARGS="-DGGML_CUDA=on"
+ENV FORCE_CMAKE=1
+ENV CMAKE_BUILD_PARALLEL_LEVEL=8
+
+RUN pip install --no-cache-dir .

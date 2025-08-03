@@ -57,6 +57,7 @@ if __name__ == '__main__':
     n_ctx = app_params.get('n_ctx', 2048)
     n_threads = app_params.get('n_threads', 8)
     n_gpu_layers = app_params.get('gpu_layers', 0)
+    n_batch = app_params.get('n_batch', 8)
 
     logger.info(f"Using model: {model_path}")
     logger.info(f"Context size: {n_ctx}, Threads: {n_threads}, GPU layers: {n_gpu_layers}")
@@ -65,7 +66,8 @@ if __name__ == '__main__':
         model_path=model_path,
         n_ctx=n_ctx,
         n_threads=n_threads,
-        n_gpu_layers=n_gpu_layers
+        n_gpu_layers=n_gpu_layers,
+        n_batch=n_batch
     )
 
     prompt = app_params.get('prompt', 'Hello, LLaMA 4!')
