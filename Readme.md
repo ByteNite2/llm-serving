@@ -59,7 +59,7 @@ Example device requirements in manifest:
     "partitioner": {},
     "app": {
       "prompt": "Make me laugh",
-      "gpu_layers": 70,
+      "gpu_layers": 30,
       "n_threads": 23
     },
     "assembler": {}
@@ -106,14 +106,14 @@ Example device requirements in manifest:
 }
 ```
 
+`n_threads` refers to the number of CPU threads used by the application for parallel processing. Increasing `n_threads` can improve performance on systems with more CPU cores, as it allows the app to utilize more threads for computation. (Number of CPU threads for parallel execution)
 
-`n_threads` refers to the number of CPU threads used by the application for parallel processing. Increasing `n_threads` can improve performance on systems with more CPU cores, as it allows the app to utilize more threads for computation.
+`gpu_threads` (if present) would refer to the number of parallel threads or streams used on the GPU for processing. This parameter is typically used to control how much parallelism is leveraged on the GPU, which can affect performance depending on the GPU architecture and workload.(Number of GPU threads/streams for parallel execution(if gpu exists))
 
-`gpu_threads` (if present) would refer to the number of parallel threads or streams used on the GPU for processing. This parameter is typically used to control how much parallelism is leveraged on the GPU, which can affect performance depending on the GPU architecture and workload.
+`n_ctx`: The maximum total number of tokens (input + output) the model can process at once.
 
-In summary:
-`n_threads`: Number of CPU threads for parallel execution.
-`gpu_threads`: Number of GPU threads/streams for parallel execution(if gpu exists).
+`max_tokens`: The maximum number of tokens the model is allowed to generate in response. (length of answer)
+
+`n_batch`: n_batch in llama-cpp-python controls the number of tokens processed in parallel during inference. Larger n_batch means faster generation per token (better GPU throughput). Smaller n_batch is slower but safe (uses less VRAM)
 
 These parameters help optimize resource usage and performance for both CPU and GPU instances.
-

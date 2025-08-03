@@ -3,7 +3,7 @@
   "version": "0.1",
   "platform": "docker",
   "platform_config": {
-    "container": "chandrabytenite/llama4-scout-gpu:v0.3"
+    "container": "chandrabytenite/llama4-scout-gpu:v0.4"
   },
   "entrypoint": "main.py",
   "device_requirements": {
