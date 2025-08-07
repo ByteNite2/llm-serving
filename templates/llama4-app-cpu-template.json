@@ -1,7 +1,7 @@
 {
   "id": "llama4-app-cpu-template",
-  "description": "A template for llama4-app-cpu",
-  "app": "llama4-app-cpu@0.1",
+  "description": "A template for llama4-app-cpu with model caching",
+  "app": "llama4-app-cpu@2",
   "partitioner": "passthrough",
   "assembler": "passthrough"
 }
