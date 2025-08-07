@@ -1,6 +1,6 @@
 {
   "name": "llama4-app-gpu",
-  "version": "0.1",
+  "version": "1.0",
   "platform": "docker",
   "platform_config": {
     "container": "chandrabytenite/llama4-scout-gpu:v0.4"
@@ -13,5 +13,5 @@
       "nvidia a100-sxm4-40gb"
     ]
   },
-  "description": "An app named llama4-app-gpu"
+  "description": "An app named llama4-app-gpu without model caching"
 }
