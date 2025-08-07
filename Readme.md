@@ -8,9 +8,8 @@
 - [CPU vs. GPU Versions](#cpu-vs-gpu-versions)
 - [Prerequisites](#prerequisites)
 - [Installing the ByteNite Developer CLI](#installing-the-bytenite-developer-cli)
-- [App Components](#app-components)
-- [Running Jobs on ByteNite](#running-jobs-on-bytenite)
-- [Example: Text Generation with Llama 4](#example-text-generation-with-llama-4)
+- [LLM Serving App Components](#llm-serving-app-components)
+- [Running an LLM Serving Job on ByteNite](#running-an-llm-serving-job-on-bytenite)
 - [Troubleshooting & FAQ](#troubleshooting--faq)
 - [References](#references)
 
@@ -44,18 +43,17 @@ ByteNite is a serverless container platform for stateless, compute-intensive wor
 
 ```
 llm-serving/
-├── llama4-app-cpu/              # CPU-optimized LLM app
-│   ├── manifest.json            # App manifest with CPU requirements
-│   ├── template.json            # Job template configuration
-│   ├── Dockerfile               # Container setup for CPU
-│   └── app/
-│       └── main.py              # Main application code
-├── llama4-app-gpu/              # GPU-optimized LLM app
-│   ├── manifest.json            # App manifest with GPU requirements
-│   ├── template.json            # Job template configuration
-│   ├── Dockerfile               # Container setup for GPU with CUDA
-│   └── app/
-│       └── main.py              # Main application code
+├── llama4-app-cpu/                  # CPU-optimized LLM app
+│   ├── manifest.json                # App manifest (CPU resources)
+│   ├── Dockerfile                   # CPU container setup
+│   └── app/main.py                  # Main LLAMA4 CPU app logic
+├── llama4-app-gpu/                  # GPU-optimized LLM app
+│   ├── manifest.json                # App manifest (GPU resources)
+│   ├── Dockerfile                   # GPU container setup (CUDA)
+│   └── app/main.py                  # Main LLAMA4 GPU app logic
+├── templates/
+│   ├── llama4-app-cpu-template.json # Centralized CPU job template
+│   └── llama4-app-gpu-template.json # Centralized GPU job template
 └── README.md
 ```
 
@@ -216,7 +214,13 @@ Follow these steps to get up and running with your own ByteNite LLM serving pipe
    bytenite app activate llama4-app-gpu
    ```
 
-6. **Launch a job** using the methods described below.
+6. **Push the templates:**
+   ```bash
+   bytenite template push ./templates/llama4-app-cpu-template.json && \
+   bytenite template push ./templates/llama4-app-gpu-template.json
+   ```
+
+7. **Launch a job** using the methods described below.
 
 ### ByteNite Dev CLI: Commands & Usage
 
@@ -232,20 +236,15 @@ Most users only need these commands in order:
 
 For more commands, run `bytenite --help` or see the ByteNite documentation.
 
-## App Components
+## LLM Serving App Components
 
-### App (llama4-app-cpu / llama4-app-gpu)
+### App Code (llama4-app-cpu / llama4-app-gpu)
 - Implements text generation using Llama 4 Scout model via llama-cpp-python
 - Accepts a text prompt and generates a response
 - Uses passthrough partitioner/assembler (no data splitting required)
 - See `app/main.py` for implementation details
 
-### Templates
-- Templates define job configuration and parameters
-- CPU template: Uses `llama4-app-cpu-template`
-- GPU template: Uses `llama4-app-gpu-template`
-
-### Configurable Parameters
+### Configurable App Parameters
 
 - **`prompt`**: The input text prompt for the model to respond to
 - **`n_threads`**: Number of CPU threads for parallel processing (CPU: recommended 59, GPU: recommended 23)
@@ -256,7 +255,27 @@ For more commands, run `bytenite --help` or see the ByteNite documentation.
 
 These parameters help optimize resource usage and performance for both CPU and GPU instances.
 
-## Running Jobs on ByteNite
+### Templates
+- Templates define job configuration and parameters
+- CPU template: Uses `llama4-app-cpu-template`
+- GPU template: Uses `llama4-app-gpu-template`
+
+## Running an LLM Serving Job on ByteNite
+
+To launch an llm serving job, simply create a new ByteNite job with the `llama4-app-gpu-template` or `llama4-app-cpu-template` as `templatedId` and provide your desired prompt and parameters. The model will process your input and generate a text response, with results saved to the output directory for easy access via the ByteNite UI or API. You can monitor job progress and view logs directly through the ByteNite platform.
+
+### Launching via GUI
+
+Follow these steps to launch a job using the ByteNite GUI:
+
+1. Go to [https://computing.bytenite.com](https://computing.bytenite.com) and log in.
+2. Navigate to the **Templates** section in the sidebar.
+3. Select your desired template (e.g., `llama4-app-gpu-template` or `llama4-app-cpu-template`) and click on it to create a new job.
+4. In the job configuration form, fill in the required **App** parameters (see [Configurable App Parameters](#configurable-app-parameters)). Make sure to add all necessary fields (e.g., `prompt`, `n_threads`, `gpu_layers`, etc.) under the **App** section.
+5. For **Data Source**, select **Bypass**.
+6. For **Data Destination**, select **Temporary Bucket**.
+7. Review your configuration and click **Start Job**.
+8. Monitor job progress and logs from the job overview page. Once complete, download the results directly from the interface.
 
 ### Launching via API
 
@@ -331,13 +350,6 @@ token = response.json()["token"]
   }
 }
 ```
-
-## Example: Text Generation with Llama 4
-
-1. Launch a job with your desired prompt and parameters
-2. The model will process your prompt and generate a text response
-3. Results are saved to the output directory and accessible via ByteNite UI or API
-4. Monitor job progress and view logs through the ByteNite platform
 
 ## Troubleshooting & FAQ
 

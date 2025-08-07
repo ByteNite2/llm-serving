@@ -67,7 +67,8 @@ if __name__ == '__main__':
         n_ctx=n_ctx,
         n_threads=n_threads,
         n_gpu_layers=n_gpu_layers,
-        n_batch=n_batch
+        n_batch=n_batch,
+        verbose=False
     )
 
     prompt = app_params.get('prompt', 'Hello, LLaMA 4!')

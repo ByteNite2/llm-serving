@@ -65,7 +65,8 @@ if __name__ == '__main__':
     llm = Llama(
         model_path=model_path,
         n_ctx=n_ctx,
-        n_threads=n_threads
+        n_threads=n_threads,
+        verbose=False
     )
     prompt = app_params.get('prompt', 'Hello, LLaMA 4!')
     max_tokens = app_params.get('max_tokens', 2048)
