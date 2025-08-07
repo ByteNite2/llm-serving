@@ -1,5 +1,5 @@
 {
-  "id": "llama4-app-gpu-template",
+  "id": "llama4-app-gpu-template-model-caching",
   "description": "A template for llama4-app-gpu",
   "app": "llama4-app-gpu@2",
   "partitioner": "passthrough",
