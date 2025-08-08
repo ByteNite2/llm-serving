@@ -63,13 +63,13 @@ llm-serving/
 - Runs on high-core-count CPUs (minimum: 30 cores, 60GB+ RAM)
 - Suitable for cost-effective inference when GPU resources are unavailable
 - Uses pure CPU inference with configurable thread count
-- Container: `chandrabytenite/llama4-scout-cpu:v0.1`
+- Container: `chandrabytenite/llama4-scout-cpu:v0.11`
 
 **GPU Version (`llama4-app-gpu`)**: 
 - Runs on NVIDIA A100 40GB GPUs
 - Optimized for CUDA 12.2 with GPU layer offloading
 - Significantly faster inference for real-time workloads
-- Container: `chandrabytenite/llama4-scout-gpu:v0.2`
+- Container: `chandrabytenite/llama4-scout-gpu:v0.4`
 
 Both versions use the same Llama 4 Scout model and can be deployed interchangeably depending on your hardware requirements and performance needs.
 
