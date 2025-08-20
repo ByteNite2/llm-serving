@@ -1,7 +1,28 @@
 {
   "id": "llama4-app-cpu-template",
-  "description": "A template for llama4-app-cpu",
   "app": "llama4-app-cpu@1",
   "partitioner": "passthrough",
-  "assembler": "passthrough"
+  "assembler": "passthrough",
+  "description": "LLM text generation app using llama4 on CPU",
+  "params": {
+    "partitioner": {},
+    "app": {
+      "prompt": "Make me laugh",
+      "n_threads": 59,
+      "n_ctx": 2048,
+      "max_tokens": 2024
+    },
+    "assembler": {}
+  },
+  "dataSource": {
+    "dataSourceDescriptor": "bypass"
+  },
+  "dataDestination": {
+    "dataSourceDescriptor": "bucket"
+  },
+  "config": {
+    "isTestJob": true,
+    "jobTimeout": 3600,
+    "taskTimeout": 3600
+  }
 }

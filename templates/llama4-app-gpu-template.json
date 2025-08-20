@@ -1,7 +1,29 @@
 {
   "id": "llama4-app-gpu-template",
-  "description": "A template for llama4-app-gpu",
   "app": "llama4-app-gpu@1",
   "partitioner": "passthrough",
-  "assembler": "passthrough"
+  "assembler": "passthrough",
+  "description": "LLM text generation app using llama4 on GPU",
+  "params": {
+    "partitioner": {},
+    "app": {
+      "prompt": "Make me laugh",
+      "gpu_layers": 30,
+      "n_threads": 23,
+      "n_ctx": 2048,
+      "max_tokens": 2024
+    },
+    "assembler": {}
+  },
+  "dataSource": {
+    "dataSourceDescriptor": "bypass"
+  },
+  "dataDestination": {
+    "dataSourceDescriptor": "bucket"
+  },
+  "config": {
+    "isTestJob": true,
+    "jobTimeout": 3600,
+    "taskTimeout": 3600
+  }
 }
