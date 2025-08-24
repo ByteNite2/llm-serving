@@ -10,5 +10,5 @@
     "min_cpu": 30,
     "min_memory": 60
   },
-  "description": "An app named llama4-app-cpu without model caching"
+  "description": "An app named llama4-app-cpu with model stored in GCS bucket"
 }
