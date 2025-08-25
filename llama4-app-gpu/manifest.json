@@ -13,5 +13,5 @@
       "nvidia a100-sxm4-40gb"
     ]
   },
-  "description": "An app named llama4-app-gpu without model caching"
+  "description": "An app named llama4-app-gpu with model stored in cache directory"
 }
