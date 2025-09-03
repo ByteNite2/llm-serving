@@ -52,8 +52,9 @@ if __name__ == '__main__':
     logger.info("Starting LLaMA 4 CPU app...")
     from llama_cpp import Llama
 
-    llm_models_dir = os.getenv('LLM_MODELS_DIR', '/llm-models')
-    model_path = os.path.join(llm_models_dir, 'Llama-4-Scout-Q4_K_M-00001-of-00002.gguf')
+    shared_cache_dir = os.getenv('SHARED_CACHE_DIR')
+    model_path = os.path.join(shared_cache_dir, 'Llama-4-Scout-Q4_K_M-00001-of-00002.gguf')
+
     n_ctx = app_params.get('n_ctx', 2048)
     n_threads = app_params.get('n_threads', 8)
 
